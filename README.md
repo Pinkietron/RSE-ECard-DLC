@@ -10,6 +10,7 @@ Shao - Programming assistance
 The source folders already contain all of the required bash script files for building
 
 After making any changes:
+
 ```make```
 
 ```./bins```
