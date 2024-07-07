@@ -1,0 +1,1 @@
+./nedcmake -i strip-01.z80 -type 1 -region 2
