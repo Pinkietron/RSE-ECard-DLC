@@ -1,6 +1,8 @@
 # RSE-ECard-DLC
 Adding more content to Pokemon Ruby, Sapphire, and (maybe) Emerald
 
+Won't be adding content to any lang other then ENG at the moment because it is just a giant pain.
+
 # Credits
 ImABlisy - Programming most functions
 
