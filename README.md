@@ -3,6 +3,8 @@ Adding more content to Pokemon Ruby, Sapphire, and (maybe) Emerald
 
 Won't be adding content to any lang other then ENG at the moment because it is just a giant pain.
 
+There are some issues loading events on Rev0/v1.0 atm and I'll will fix them when I have a chance.
+
 # Credits
 ImABlisy - Programming most functions
 
