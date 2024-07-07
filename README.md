@@ -3,6 +3,7 @@ Adding more content to Pokemon Ruby, Sapphire, and Emerald
 
 # Credits
 ImABlisy - Programming most functions
+
 Shao - Programming assistance
 
 # Building
