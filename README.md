@@ -23,9 +23,9 @@ copy from offset 0x51 to the end of the file and paste that into the end of stri
 
 # TO-DO
 
-Remaining Shadows from COLO/XD:
+#Remaining Shadows from COLO/XD:
 
-COLOSSEUM:
+#COLOSSEUM:
 
 MAKUHITA
 
@@ -127,7 +127,7 @@ MAREEP (JP)
 
 SCIZOR (JP)
 
-XD:
+#XD:
 
 TEDDIURSA
 
