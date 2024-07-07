@@ -5,7 +5,7 @@ db $00
 
 
 TicketPalette: ; 1604
-	INCBIN "entei.pal.bin"
+	INCBIN "mon.pal.bin"
 
 Prologue:
 	INCBIN "prologue-{REGION_NAME}.bin"
