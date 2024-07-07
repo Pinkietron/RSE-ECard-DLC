@@ -21,11 +21,9 @@ copy from offset 0x51 to the end of the file and paste that into the end of stri
 
 ```./cards```
 
-# TO-DO
+# TO-DO:
 
-# Remaining Shadows from COLO/XD:
-
-# COLOSSEUM:
+# COLOSSEUM SHADOWS:
 
 MAKUHITA
 
@@ -127,7 +125,7 @@ MAREEP (JP)
 
 SCIZOR (JP)
 
-# XD:
+# XD SHADOWS:
 
 TEDDIURSA
 
