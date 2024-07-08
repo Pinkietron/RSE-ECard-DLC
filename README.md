@@ -13,7 +13,7 @@ E-Reader Save Injections is for injecting a save to an E-Reader or Flashcart for
 
 
 # Credits
-ImABlisy - Programming most functions
+ImABlisy - Programming assistance and providing a foundation to build from
 
 Shao - Programming assistance
 
