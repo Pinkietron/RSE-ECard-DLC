@@ -1,0 +1,3 @@
+./nedcenc -d -i 01.raw -o save1.bin
+./nedcenc -d -i 02.raw -o save2.bin
+
