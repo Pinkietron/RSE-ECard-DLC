@@ -1,11 +1,16 @@
 # RSE-ECard-DLC
 Adding more content to Pokemon Ruby, Sapphire, and (maybe) Emerald
 
-This project focuses on adding special encounters that aren't available in Ruby or Sapphire to the game.
+This project focuses on adding special encounters not available in Ruby or Sapphire to the game.
 
-Won't be adding content to any lang other then ENG at the moment because it is just a giant pain.
+Specific Pokemon not listed under the to-do may be done upon request
 
-There are some issues loading events on Rev0/v1.0 atm and I'll will fix them when I have a chance.
+I won't add content to any language other than ENG for now because it is just a giant pain.
+
+The E-Reader Cards folder contains printable .raw files which you print with the dot code print tool made by Firefly or can be sent to games via mGBA's link mode with an e-Reader ROM. https://www.caitsith2.com/ereader/devtools.htm
+
+E-Reader Save Injections is for injecting a save to an E-Reader or Flashcart for use on original hardware.
+
 
 # Credits
 ImABlisy - Programming most functions
@@ -28,6 +33,28 @@ copy from offset 0x51 to the end of the file and paste that into the end of stri
 ```./cards```
 
 # TO-DO:
+
+# POKEMON WITH EVENT ONLY MOVES:
+
+SWABLU - FALSE SWIPE (BOX)
+
+ZIGZAGOON - EXTREME SPEED (BOX)
+
+SKITTY - PAY DAY (BOX)
+
+PICHU - SURF (BOX)
+
+PIKACHU - FLY (JP)
+
+PICHU - FOLLOW ME (POKEPARK JP)
+
+ODDISH - LEECH SEED (JP)
+
+MEOWTH - PETAL DANCE (JP)
+
+POLIWAG - SWEET KISS (JP)
+
+BELLSPROUT - TEETER DANCE (JP)
 
 # COLOSSEUM SHADOWS:
 
