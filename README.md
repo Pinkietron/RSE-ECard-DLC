@@ -17,7 +17,7 @@ ImABlisy - Programming assistance and providing a foundation to build from
 
 Shao - Programming assistance
 
-# Building
+# Building - WSL
 
 The source folders already contain all of the required bash script files for building
 
