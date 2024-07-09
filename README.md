@@ -34,6 +34,8 @@ copy from offset 0x51 to the end of the file and paste that into the end of stri
 
 # TO-DO:
 
+* Add Mystery Event 3 Files
+
 # POKEMON WITH EVENT ONLY MOVES:
 
 SWABLU - FALSE SWIPE (BOX)
