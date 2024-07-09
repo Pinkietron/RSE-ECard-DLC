@@ -21,6 +21,8 @@ Shao - Programming assistance
 
 The source folders already contain all of the required bash script files for building
 
+Depends on: ```python2.7```
+
 After making any changes:
 
 ```make```
