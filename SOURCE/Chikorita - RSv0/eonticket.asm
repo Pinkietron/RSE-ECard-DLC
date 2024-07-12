@@ -227,6 +227,8 @@ PreloadScriptStart:
 	
 	writebytetoaddr	$00, $0202886A
 
+	writebytetoaddr	$00, $0202886B
+
 	writebytetoaddr	$00, $0202886C
 
 	writebytetoaddr	$00, $0202886D
@@ -238,16 +240,6 @@ PreloadScriptStart:
 	writebytetoaddr	$00, $02028870
 
 	writebytetoaddr	$00, $02028871
-
-	writebytetoaddr $E4, $2024FF0
-	writebytetoaddr $E4, $2025090
-	writebytetoaddr $E4, $2025130
-	writebytetoaddr $E4, $20251D0
-	writebytetoaddr $E4, $2025270
-	writebytetoaddr $E4, $2025310
-
-	callasm $08135c65
-
  	
 	writebytetoaddr $0, $202539F ;Temp pokemon. Starts with bit for alignment.
 	writebytetoaddr $0, $20253A0 ; pid start
@@ -331,6 +323,15 @@ PreloadScriptStart:
 	writebytetoaddr $00, $20253EE 
 	writebytetoaddr $80, $20253EF ; misc end
 
+	writebytetoaddr $E4, $2024FF0
+	writebytetoaddr $E4, $2025090
+	writebytetoaddr $E4, $2025130
+	writebytetoaddr $E4, $20251D0
+	writebytetoaddr $E4, $2025270
+	writebytetoaddr $E4, $2025310
+
+	callasm $08135c65
+
 	writebytetoaddr $E4, $2024FF0	;Substructure Copy Table
 	writebytetoaddr $B4, $2024FF1	
 	writebytetoaddr $D8, $2024FF2	
@@ -400,7 +401,7 @@ PreloadScriptStart:
 	writebytetoaddr $BD, $2025031
 	writebytetoaddr $00, $2025032
 	writebytetoaddr $00, $2025033
-	writebytetoaddr $81, $2025034
+	writebytetoaddr $61, $2025034
 	writebytetoaddr $57, $2025035
 	writebytetoaddr $06, $2025036
 	writebytetoaddr $08, $2025037
