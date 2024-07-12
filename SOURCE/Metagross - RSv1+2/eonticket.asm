@@ -23,8 +23,8 @@ DataStart:
 
 
 GoSeeYourFather:
-	Text_EN "Chat it up at the LAVARIDGE\n"
-	Text_EN "TOWN P.C.@"
+	Text_EN "Chat it up at the LAVARIDGE TOWN\n"
+	Text_EN "POKéMON CENTER@"
 
 
 
@@ -125,6 +125,8 @@ SaidNo:
 
 
 Retry:
+
+	faceplayer
 
 	virtualmsgbox TryAgain
 

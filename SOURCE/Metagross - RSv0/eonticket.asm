@@ -126,6 +126,8 @@ SaidNo:
 
 Retry:
 
+	faceplayer
+
 	virtualmsgbox TryAgain
 
 	waitmsg
