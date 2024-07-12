@@ -27,7 +27,8 @@ After making any changes:
 
 ```make```
 
-```./bins```
+```./nedcenc -d -i 00-C000-EN.raw-01.raw -o strip-01.bin```
+```./nedcenc -d -i 00-C000-EN.raw-02.raw -o strip-02.bin```
 
 In a hex editor remove the header from strip1 (the file should start with 76 70 6B...) then in strip2,
 copy from offset 0x51 to the end of the file and paste that into the end of strip1 and save the file
