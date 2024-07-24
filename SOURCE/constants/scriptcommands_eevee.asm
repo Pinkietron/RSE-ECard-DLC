@@ -465,7 +465,7 @@ METLOCATION: MACRO
         db $D2
         db $03
         db $08
-        db $5C ; Met area
+        db $5E ; Met area
         db $00
         db $00
         db $00
