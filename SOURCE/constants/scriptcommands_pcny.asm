@@ -574,6 +574,32 @@ MOVE1: MACRO
         db $00
         db $00
         ENDM
+MOVE2: MACRO
+        db $02
+        db $48
+        db $0F ;ID move slot 1 
+        db $21
+        db $02
+        db $4B
+        db $03
+        db $A2
+        db $18
+        db $47
+        db $00
+        db $00
+        db $C0
+        db $45
+        db $00
+        db $03
+        db $ED
+        db $D2
+        db $03
+        db $08
+        db $E6 ; Move id
+        db $00
+        db $00
+        db $00
+        ENDM
 BALL: MACRO
 	dw $4804 ; party ram
     dw $4905 ; field to change - last byte is the actual value to change
