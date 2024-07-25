@@ -548,46 +548,20 @@ METLEVEL: MACRO
         db $00
         db $00
         ENDM
-MOVE1: MACRO
-        db $02
-        db $48
-        db $0E ;ID move slot 1 
-        db $21
-        db $02
-        db $4B
-        db $03
-        db $A2
-        db $18
-        db $47
-        db $00
-        db $00
-        db $C0
-        db $45
-        db $00
-        db $03
-        db $ED
-        db $D2
-        db $03
-        db $08
-        db $11 ; Move id
-        db $01
-        db $00
-        db $00
-        ENDM
 BALL: MACRO
 	dw $4804 ; party ram
-    dw $4905 ; field to change - last byte is the actual value to change
-    dw $7809 ; value of field - change last byte
-    dw $2264 ; load to r3 (lastresult)
-    dw $4351 ; set value to 100?
-    dw $4408 ; setboxmondata location
-    dw $2126 ; load from lastresult to r7
-    dw $A203 ; get party slot of captured mon
-    dw $4B03 ; add to party ram location
-    dw $4718 ; does setboxmondata
+    dw $4905 
+    dw $7809 
+    dw $2264 
+    dw $4351 
+    dw $4408 
+    dw $2126 ; field to change
+    dw $A203 
+    dw $4B03 
+    dw $4718 
 	dd $03004360
 	dd $0202e8da
-	dd $00000004
+	dd $00000004 ; value of pokeball
 	dd $0803d2ed
 	ENDM
 TID: MACRO
