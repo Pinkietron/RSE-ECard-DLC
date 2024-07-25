@@ -40,12 +40,10 @@ NormanScriptStart:
 		   virtualgotoif 2, Start  ;It should never fail.
 
 			db $00
-			dw $0000
+			dw $0000 ; fix address offsets
 
-		   ;EVENTLEGAL2 ; remove
 		   METLOCATION
 		   GAMEORIGIN
-		   ;METLEVEL ; remove
 		   BALL
 
 
