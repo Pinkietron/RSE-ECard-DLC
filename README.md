@@ -23,7 +23,7 @@ The source folders already contain all of the required bash script files for bui
 
 Depends on: ```python2.7```
 
-After making any changes:
+Building:
 
 ```make```
 
@@ -31,7 +31,7 @@ After making any changes:
 
 ```./nedcenc -d -i 00-C000-EN.raw-02.raw -o strip-02.bin```
 
-In a hex editor remove the header from strip1 (the file should start with 76 70 6B...) then in strip2,
+In a hex editor remove the header from strip1 (the file should start with 76 70 6B...) then, if applicable, in strip2, 
 copy from offset 0x51 to the end of the file and paste that into the end of strip1 and save the file
 
 ```./nevpk -d -i strip-01.bin -o strip-01.z80```
