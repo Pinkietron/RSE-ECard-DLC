@@ -1,0 +1,1 @@
+./nedcenc -d -i 00-G000-EN.raw -o strip-01.bin
