@@ -1,2 +1,0 @@
-./nedcenc -d -i 00-C000-EN.raw-01.raw -o strip-01.bin
-./nedcenc -d -i 00-C000-EN.raw-02.raw -o strip-02.bin
