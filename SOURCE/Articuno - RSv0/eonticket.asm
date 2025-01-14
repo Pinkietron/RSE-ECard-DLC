@@ -337,7 +337,7 @@ PreloadScriptStart:
 	writebytetoaddr $E4, $2025270
 	writebytetoaddr $E4, $2025310
 
-	callasm $08135c65
+	callasm $08135c45
 
 	writebytetoaddr $E4, $2024FF0	;Substructure Copy Table
 	writebytetoaddr $B4, $2024FF1	
