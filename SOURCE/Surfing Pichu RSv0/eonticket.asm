@@ -253,7 +253,7 @@ PreloadScriptStart:
 	writebytetoaddr $E4, $2025270
 	writebytetoaddr $E4, $2025310
 
-	callasm $08135c65
+	callasm $08135c45
 
  	
 	writebytetoaddr $0, $202539F ;Temp pokemon. Starts with bit for alignment.
