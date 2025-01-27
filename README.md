@@ -1,5 +1,5 @@
 # RSE-ECard-DLC
-Adding more content to Pokemon Ruby, Sapphire, and (maybe) Emerald
+Adding more content to Pokemon Ruby and Sapphire
 
 This project focuses on adding special encounters not available in Ruby or Sapphire to the game.
 
