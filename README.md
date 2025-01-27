@@ -5,7 +5,7 @@ This project focuses on adding special encounters not available in Ruby or Sapph
 
 Specific Pokemon not listed under the to-do may be done upon request
 
-I won't add content to any language other than ENG for now because it is just a giant pain.
+Currently only English games are supported
 
 The E-Reader Cards folder contains printable .raw files which you print with the dot code print tool made by Firefly or can be sent to games via mGBA's link mode with an e-Reader ROM. https://www.caitsith2.com/ereader/devtools.htm
 
