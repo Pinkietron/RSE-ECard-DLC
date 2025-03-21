@@ -11,8 +11,8 @@ INCLUDE "../constants/scriptcommands_birds.asm"
 
 DataStart:
 	db IN_GAME_SCRIPT
-	db 0,34 ; Route 119
-	db 37   ; fisherman near the wingull house (surf)
+	db 24, 53 ; New Mauville (Interior)
+	db 3   ; Thunderstone Item Ball
 	GBAPTR NormanScriptStart
 	GBAPTR NormanScriptEnd
 
@@ -33,7 +33,7 @@ NormanScriptStart:
 
 
 
-	           db $43                  ;This checks if your party is bigger than 0
+	       db $43                  ;This checks if your party is bigger than 0
 
 		   compare LASTRESULT, 0   ;It's so I can store thumb code in static spot. 
 
@@ -66,8 +66,6 @@ Start:
 		   sound $15	
 
  		   pause $10
-       
-   		   faceplayer
 
 		   virtualmsgbox Hello           
 
@@ -75,51 +73,21 @@ Start:
 		
 		   waitkeypress
 
-			db $A4 ; setweather
-
-			dw $05 ; weather thunder - index (https://github.com/pret/pokeemerald/blob/master/include/constants/weather.h)
-
-			db $A5 ; doweather
-
-			pause $3C
-
-			fadesong $1BC ; Drought - ironic
-
-			pause $78
-
-			applymovement $25, $2025076 ; 0x25 = 37 
-			
-			virtualmsgbox Hm
-
-			waitmsg
-
-			waitkeypress
-
 			playmoncry $91, $25
 
-                   waitmoncry
-			
-			applymovement $25, $2025074 ; 0x25 = 37 
+				waitmoncry
 
-			pause $20
+			applymovement $FF, $2025074 ; 0xFF = Player
 
-		   sound $57
-
-		   db $97, $01 ; fade out
-
-		   applymovement $25, $2025078 ; 0x25 = 37 
-		   
-		   pause $14
-
-		   db $97, $00 ; fade in
-
-		   sound $57
-
-		   virtualmsgbox Smitten
+			virtualmsgbox Cry           
 
 		   waitmsg
-
+		
 		   waitkeypress
+			
+			applymovement $FF, $2025077 
+
+			pause $20
 
 		   release
 
@@ -200,19 +168,12 @@ Flew:
 		
 
 Hello:
-	Text_EN "A friend told me that you have more\n"
-	Text_EN "luck when fishing in the rain.\p"
-	Text_EN "Not sure if I believe him...@"
+	Text_EN "It’s a Thundersto-\p"
+	Text_EN "You feel a piercing gaze...@"
 
-Hm:
-	Text_EN "A thunderstorm is rolling in\p"
-	Text_EN "...\p"
-	Text_EN "Does more extreme weather better\n"
-	Text_EN "my chances of success?@"
 
-Smitten:
-	Text_EN "-There’s nothing but a pile of ash\n"
-	Text_EN "where he once stood-@"
+Cry:
+	Text_EN "Gyaoooo!@"
 	
 
 	
@@ -425,17 +386,13 @@ PreloadScriptStart:
 	writebytetoaddr $53, $202504D
 	writebytetoaddr $02, $202504E
 	writebytetoaddr $02, $202504F
-
 	
-	writebytetoaddr $57, $2025074 ; question mark box (https://www.pokecommunity.com/threads/emerald-movement-commands.339844/)
-	writebytetoaddr $FE, $2025075
+	writebytetoaddr $57, $2025074 ; ? box (https://www.pokecommunity.com/threads/emerald-movement-commands.339844/)
+	writebytetoaddr $0, $2025075 ; face down
+	writebytetoaddr $FE, $2025076
 	
-	writebytetoaddr $3F, $2025076 ; look away from player	
-	writebytetoaddr $FE, $2025077
-
-	writebytetoaddr $54, $2025078 ; hide npc
-	writebytetoaddr $FE, $2025079
-
+	writebytetoaddr $56, $2025077 ; ! box
+	writebytetoaddr $FE, $2025078
 
 	writebytetoaddr $01, $202508D ;No Room in Party
 	writebytetoaddr $07, $202508E
@@ -514,6 +471,7 @@ PreloadScriptStart:
 	writebytetoaddr $FF, $20250D6
 
 	clearflag $20
+	clearflag $456
 
 
 
