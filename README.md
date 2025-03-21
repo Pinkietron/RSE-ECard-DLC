@@ -1,11 +1,11 @@
 # RSE-ECard-DLC
-Adding more content to Pokemon Ruby, Sapphire, and (maybe) Emerald
+Adding more content to Pokemon Ruby and Sapphire
 
 This project focuses on adding special encounters not available in Ruby or Sapphire to the game.
 
 Specific Pokemon not listed under the to-do may be done upon request
 
-I won't add content to any language other than ENG for now because it is just a giant pain.
+Currently only English games are supported
 
 The E-Reader Cards folder contains printable .raw files which you print with the dot code print tool made by Firefly or can be sent to games via mGBA's link mode with an e-Reader ROM. https://www.caitsith2.com/ereader/devtools.htm
 
@@ -15,7 +15,7 @@ E-Reader Save Injections is for injecting a save to an E-Reader or Flashcart for
 # Credits
 ImABlisy - Programming assistance and providing a foundation to build from
 
-Shao - Programming assistance
+Shaonova - Programming assistance
 
 # Building - WSL
 
