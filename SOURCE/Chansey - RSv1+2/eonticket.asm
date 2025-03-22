@@ -13,7 +13,7 @@ DataStart:
 	db IN_GAME_SCRIPT
 	db 4,5 ; Lavaridge PC - low npc advancements
 	db 2     ; Youngster
-	GBAPTR NormanScriptStart
+	GBAPTR ChanseyScriptStart
 	GBAPTR NormanScriptEnd
 
 	db PRELOAD_SCRIPT
@@ -28,30 +28,21 @@ GoSeeYourFather:
 
 
 
-NormanScriptStart:
-	setvirtualaddress NormanScriptStart
-
-
-
-	           db $43                  ;This checks if your party is bigger than 0
+ChanseyScriptStart:
+	setvirtualaddress ChanseyScriptStart
+	       db $43              ;This checks if your party is bigger than 0
 
 		   compare LASTRESULT, 0   ;It's so I can store thumb code in static spot. 
 
 		   virtualgotoif 2, Start  ;It should never fail.
+		   
+		   dw $0000
+		   db $00
 
-			dw $0000
-
-		   ;M2RNG
-		   EVENTLEGAL2
-		   METLOCATION
-		   GAMEORIGIN
-		   METLEVEL
-		   BALL
+		   M2RNGAlgo
+		   ;BALL
 
 
-
-
-		      
 Start:
 		   db $43 ;check party size
 
@@ -150,13 +141,7 @@ Battle:
 
 		   setwildbattle $71, $19, $C5
 
-		   callasm $02028DE1 ;EVENTLEGAL2
-
-		   callasm $02028DF9 ;METLOCATION
-
-		   callasm $02028E11 ;GAMEORIGIN
-
-		   callasm $02028E29 ;METLEVEL
+		   callasm $02028DE1 ;m2 rng
 
 		   special $138
 
@@ -170,7 +155,7 @@ Battle:
 		   
 		   virtualgotoif 3, FlewAway
 
-                   callasm $02028E41 ;BALL
+				   ;callasm $02028F29 ;Ball
 
 		   release
 

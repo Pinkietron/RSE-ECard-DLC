@@ -1,0 +1,149 @@
+Start:
+    push {lr}
+    push {r0-r7}
+M2RNGAlgo:
+    ldr r2, gRNGValue @ load with prng location
+    ldr r1, [r2] @ load prng state
+    ldr r0, TempLocation
+    ldr r3, gMult
+    ldr r4, gAdd
+    mul r1, r3, r1 @ pid low
+    add r1, r4
+    lsr r2, r1, #16
+    mul r1, r3, r1 @ pid high
+    add r1, r4
+    lsr r5, r1, #16
+    strh r2, [r0] @ pid low loc
+    strh r5, [r0, #2] @ pid high loc
+    mov r6, r0 @ copy pid to r6 for backup
+    mul r1, r3, r1 @ blank
+    add r1, r4
+    mul r1, r3, r1 @ RNG IV 1
+    add r1, r4
+    lsl r2, r1, #1
+    lsr r2, r2, #0x11
+    mul r1, r3, r1 @ RNG IV 2
+    add r1, r4
+    lsl r5, r1, #1
+    lsr r5, r5, #0x11
+    lsl r5, r5, #0xf
+    orr r2, r5
+    lsl r6, #31 @ calcing ability with pid copy stored in r6 by shifting left 31 bits
+    orr r2, r6
+    str r2, [r0, #0x48]
+    ldr r5, TrainerOTID @ trainerID
+    ldr r6, [r5]
+    lsr r6, r6, #0x10
+    strh r6, [r0, #4] 
+    add r5, #4
+    ldr r6, [r5]
+MemoryCopy:    
+    strh r6, [r0, #6]
+    ldr r1, EnemyRam
+    ldr r2, CopyLenPresubstructInfo
+    swi #11
+    ldr r0, TempLocation
+    ldr r5, SubstructureTable 
+    ldr r0, [r0]
+    mov r1, #0x18
+    mov r7, r0
+    swi #6
+    mov r0, r7
+    cmp r0, #0
+    bpl EndCorrectionMath
+    add r1, #0x10
+    cmp r1, #0
+    bpl EndCorrectionMath
+    add r1, #0x18
+EndCorrectionMath:
+    add r5, r1
+    ldrb r6, [r5]
+    ldr r0, TempLocation
+    mov r7, #3 @loop setup
+    mov r4, #12
+    mov r5, #3
+    add r0, #32
+SubstructureCopyLoop:
+    ldr r1, EnemyRam @ Destination
+    add r1, #32 
+    ldr r2, CopyLenOneSubstruct
+    mov r3, r6
+    and r3, r5
+    mul r3, r4, r3
+    add r1, r3
+    swi #11
+    lsr r6, r6, #2
+    sub r7, #1
+    bpl SubstructureCopyLoop
+FixPokemon:
+    mov r4, pc
+    add r4, #9
+    mov lr, r4
+    ldr r0, EnemyRam 
+    ldr r3, CalculateBoxMonChecksum 
+    bx r3
+    ldr r1, EnemyRam 
+    strh r0, [r1, #28] @ store checksum
+    mov r4, pc
+    add r4, #9
+    mov lr, r4
+    mov r0, r1 @ load pokemon in EnemyRam
+    ldr r3, EncryptBoxMon @ Encryption function location
+    bx r3
+    mov r4, pc
+    add r4, #9 
+    mov lr, r4 @ CalculateMonStats
+    ldr r0, EnemyRam 
+    ldr r3, CalculateMonStats 
+    bx r3 
+    ldr r0, EnemyRam
+    ldr r1, TempLocation
+    ldr r2, CopyLenPresubstructInfo
+    add r2, #12
+    pop {r0-r7, pc}
+Finalize:
+    push {r0-r7, lr}
+    ldr r0, PartyRam
+    mov r1, #0x26 @ setting a field for Setboxmondata, but doesnt seem to do anything in practice
+    ldr r2, Setboxmondata_Value @ value for Setboxmondata, this is ball (specifically pokeball)
+    ldr r3, gSpecialVar_Result 
+    mov r6, #0x64 @ load 100 for multiplcation (one party pkmn is 100 bytes)
+    ldr r5, Setboxmondata
+    ldrb r7, [r3]
+    mul r7, r6, r7 @ multiply to find party slot
+    add r0, r7 @ add to party ram
+    bx r5 @ execute Setboxmondata on the new pokemon
+
+    .align
+    gRNGValue:
+        .long 0x03004818
+    gMult:
+        .long 0x41c64e6d
+    gAdd:
+        .long 0x00006073
+    TempLocation:
+        .long 0x020253A0
+    SubstructureTable:
+        .long 0x02024FF0
+    PartyRam:
+        .long 0x03004360
+    EnemyRam:
+        .long 0x030045C0
+    CopyLenPresubstructInfo:
+        .long 0x04000008
+    CopyLenOneSubstruct:
+        .long 0x04000003
+    CalculateBoxMonChecksum:
+        .long 0x0803b125
+    EncryptBoxMon:
+        .long 0x0803c5f1
+    CalculateMonStats:
+        .long 0x0803b1b9
+    TrainerOTID:
+        .long 0x02024EAF
+    gSpecialVar_Result:
+        .long 0x0202e8dc
+    Setboxmondata:
+        .long 0x0803d2ed
+    Setboxmondata_Value:
+        .long 0x00000004

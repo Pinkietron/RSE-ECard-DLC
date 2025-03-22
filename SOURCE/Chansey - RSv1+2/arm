@@ -1,0 +1,1 @@
+arm-none-eabi-as chanseyrng.txt -o test.bin -mcpu=arm7tdmi -mthumb
