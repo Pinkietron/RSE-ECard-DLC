@@ -1,0 +1,21 @@
+CheckPID:
+    pop {r0-r7, pc}
+    push {r0-r7, lr}
+    ldr r1, EnemyRamPID
+    tst r1, #0
+    bne SetAbility
+SetAbility:
+    mov r1, #0x2F @ Tag for MON_DATA_ABILITY_NUM
+    ldr r2, Ability_Value
+    ldr r5, Setboxmondata
+    bx r5 @ execute Setboxmondata
+
+.align
+Setboxmondata:
+    .long 0x0803d2ed
+EnemyRamPID:
+    .long 0x030045C0
+Ability_Value:
+    .long 0x00000020
+
+

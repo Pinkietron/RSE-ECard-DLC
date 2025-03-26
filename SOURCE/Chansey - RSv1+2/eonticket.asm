@@ -40,7 +40,8 @@ ChanseyScriptStart:
 		   db $00
 
 		   M2RNGAlgo
-		   ;BALL
+		   BALL
+		   Ability
 
 
 Start:
@@ -155,7 +156,8 @@ Battle:
 		   
 		   virtualgotoif 3, FlewAway
 
-				   ;callasm $02028F29 ;Ball
+				   ;callasm $02028F1D ;Fix Ability
+				   callasm $02028EF9 ;Ball
 
 		   release
 

@@ -1,240 +1,312 @@
-M2RNGAlgo: MACRO
-    db $00
-    db $B5
-    db $FF
-    db $B4
-    db $34
-    db $4A
-    db $11
-    db $68
-    db $36
-    db $48
-    db $34
-    db $4B
-    db $34
-    db $4C
-    db $59
-    db $43
-    db $09
-    db $19
-    db $0A
-    db $0C
-    db $59
-    db $43
-    db $09
-    db $19
-    db $0D
-    db $0C
-    db $02
-    db $80
-    db $45
-    db $80
-    db $06
-    db $1C
-    db $59
-    db $43
-    db $09
-    db $19
-    db $59
-    db $43
-    db $09
-    db $19
-    db $4A
-    db $00
-    db $52
-    db $0C
-    db $59
-    db $43
-    db $09
-    db $19
-    db $4D
-    db $00
-    db $6D
-    db $0C
-    db $ED
-    db $03
-    db $2A
-    db $43
-    db $F6
-    db $07
-    db $32
-    db $43
-    db $82
-    db $64
-    db $32
-    db $4D
-    db $2E
-    db $68
-    db $36
-    db $0C
-    db $86
-    db $80
-    db $04
-    db $35
-    db $2E
-    db $68
-    db $C6
-    db $80
-    db $28
-    db $49
-    db $29
-    db $4A
-    db $0B
-    db $DF
-    db $24
-    db $48
-    db $24
-    db $4D
-    db $00
-    db $68
-    db $18
-    db $21
-    db $07
-    db $1C
-    db $06
-    db $DF
-    db $38
-    db $1C
-    db $00
-    db $28
-    db $57
-    db $D5
-    db $10
-    db $31
-    db $00
-    db $29
-    db $54
-    db $D5
-    db $18
-    db $31
-    db $6D
-    db $18
-    db $2E
-    db $78
-    db $1C
-    db $48
-    db $03
-    db $27
-    db $0C
-    db $24
-    db $03
-    db $25
-    db $20
-    db $30
-    db $1D
-    db $49
-    db $20
-    db $31
-    db $1E
-    db $4A
-    db $33
-    db $1C
-    db $2B
-    db $40
-    db $63
-    db $43
-    db $C9
-    db $18
-    db $0B
-    db $DF
-    db $B6
-    db $08
-    db $01
-    db $3F
-    db $43
-    db $D5
-    db $7C
-    db $46
-    db $09
-    db $34
-    db $A6
-    db $46
-    db $16
-    db $48
-    db $18
-    db $4B
-    db $18
-    db $47
-    db $14
-    db $49
-    db $88
-    db $83
-    db $7C
-    db $46
-    db $09
-    db $34
-    db $A6
-    db $46
-    db $08
-    db $1C
-    db $15
-    db $4B
-    db $18
-    db $47
-    db $7C
-    db $46
-    db $09
-    db $34
-    db $A6
-    db $46
-    db $0F
-    db $48
-    db $13
-    db $4B
-    db $18
-    db $47
-    db $0D
-    db $48
-    db $0A
-    db $49
-    db $0D
-    db $4A
-    db $0C
-    db $32
-    db $FF
-    db $BD
-    db $FF
-    db $B5
-    db $09
-    db $48
-    db $26
-    db $21
-    db $14
-    db $4A
-    db $10
-    db $4B
-    db $64
-    db $26
-    db $10
-    db $4D
-    db $1F
-    db $78
-    db $77
-    db $43
-    db $C0
-    db $19
-    db $28
-    db $47
-    db $18
-    db $48
-    db $00
-    db $03
-    db $6D
-    db $4E
-    dd $03004818	
-    dd $41c64e6d
-    dd $00006073
-    dd $020253A0	
-    dd $02024FF0
-    dd $03004360	
-    dd $030045C0
-    dd $04000008
-    dd $04000003
-    dd $0803b125
-    dd $0803c5f1
-    dd $0803b1b9	
-    dd $02024EAF
-    dd $0202e8dc
-    dd $0803d2ed
-    dd $00000004
-    ENDM
+db $00
+db $B5
+db $FF
+db $B4
+db $3B
+db $4A
+db $11
+db $68
+db $3D
+db $48
+db $3B
+db $4B
+db $3B
+db $4C
+db $59
+db $43
+db $09
+db $19
+db $0A
+db $0C
+db $59
+db $43
+db $09
+db $19
+db $0D
+db $0C
+db $02
+db $80
+db $45
+db $80
+db $06
+db $1C
+db $59
+db $43
+db $09
+db $19
+db $59
+db $43
+db $09
+db $19
+db $4A
+db $00
+db $52
+db $0C
+db $59
+db $43
+db $09
+db $19
+db $4D
+db $00
+db $6D
+db $0C
+db $ED
+db $03
+db $2A
+db $43
+db $F6
+db $07
+db $32
+db $43
+db $82
+db $64
+db $39
+db $4D
+db $2E
+db $68
+db $36
+db $0C
+db $86
+db $80
+db $04
+db $35
+db $2E
+db $68
+db $C6
+db $80
+db $2F
+db $49
+db $30
+db $4A
+db $0B
+db $DF
+db $2B
+db $48
+db $2B
+db $4D
+db $00
+db $68
+db $18
+db $21
+db $07
+db $1C
+db $06
+db $DF
+db $38
+db $1C
+db $00
+db $28
+db $03
+db $D5
+db $10
+db $31
+db $00
+db $29
+db $00
+db $D5
+db $18
+db $31
+db $6D
+db $18
+db $2E
+db $78
+db $23
+db $48
+db $03
+db $27
+db $0C
+db $24
+db $03
+db $25
+db $20
+db $30
+db $24
+db $49
+db $20
+db $31
+db $25
+db $4A
+db $33
+db $1C
+db $2B
+db $40
+db $63
+db $43
+db $C9
+db $18
+db $0B
+db $DF
+db $B6
+db $08
+db $01
+db $3F
+db $F4
+db $D5
+db $7C
+db $46
+db $09
+db $34
+db $A6
+db $46
+db $1D
+db $48
+db $1F
+db $4B
+db $18
+db $47
+db $1B
+db $49
+db $88
+db $83
+db $7C
+db $46
+db $09
+db $34
+db $A6
+db $46
+db $08
+db $1C
+db $1C
+db $4B
+db $18
+db $47
+db $7C
+db $46
+db $09
+db $34
+db $A6
+db $46
+db $16
+db $48
+db $1A
+db $4B
+db $18
+db $47
+db $14
+db $48
+db $11
+db $49
+db $14
+db $4A
+db $0C
+db $32
+db $FF
+db $BD
+db $FF
+db $B5
+db $10
+db $48
+db $26
+db $21
+db $19
+db $4A
+db $17
+db $4B
+db $64
+db $26
+db $17
+db $4D
+db $1F
+db $78
+db $77
+db $43
+db $C0
+db $19
+db $28
+db $47
+db $FF
+db $B5
+db $0B
+db $48
+db $0B
+db $49
+db $01
+db $29
+db $FF
+db $D5
+db $2E
+db $21
+db $13
+db $4A
+db $10
+db $4B
+db $64
+db $26
+db $10
+db $4D
+db $1F
+db $78
+db $77
+db $43
+db $C0
+db $19
+db $28
+db $47
+db $18
+db $48
+db $00
+db $03
+db $6D
+db $4E
+db $C6
+db $41
+db $73
+db $60
+db $00
+db $00
+db $A0
+db $53
+db $02
+db $02
+db $F0
+db $4F
+db $02
+db $02
+db $60
+db $43
+db $00
+db $03
+db $C0
+db $45
+db $00
+db $03
+db $08
+db $00
+db $00
+db $04
+db $03
+db $00
+db $00
+db $04
+db $25
+db $B1
+db $03
+db $08
+db $F1
+db $C5
+db $03
+db $08
+db $B9
+db $B1
+db $03
+db $08
+db $AC
+db $4E
+db $02
+db $02
+db $DC
+db $E8
+db $02
+db $02
+db $ED
+db $D2
+db $03
+db $08
+db $04
+db $00
+db $00
+db $00
+db $01
+db $00
+db $00
+db $00

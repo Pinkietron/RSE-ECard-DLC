@@ -1,6 +1,5 @@
 Start:
-    push {lr}
-    push {r0-r7}
+    push {r0-r7, lr}
 M2RNGAlgo:
     ldr r2, gRNGValue @ load with prng location
     ldr r1, [r2] @ load prng state
@@ -15,7 +14,7 @@ M2RNGAlgo:
     lsr r5, r1, #16
     strh r2, [r0] @ pid low loc
     strh r5, [r0, #2] @ pid high loc
-    mov r6, r0 @ copy pid to r6 for backup
+    ldr r6, TempLocation @ copy pid to r6 for backup
     mul r1, r3, r1 @ blank
     add r1, r4
     mul r1, r3, r1 @ RNG IV 1
@@ -28,9 +27,9 @@ M2RNGAlgo:
     lsr r5, r5, #0x11
     lsl r5, r5, #0xf
     orr r2, r5
-    lsl r6, #31 @ calcing ability with pid copy stored in r6 by shifting left 31 bits
+    lsl r6, r6, #31 @ calcing ability with pid copy stored in r6 by shifting left 31 bits
     orr r2, r6
-    str r2, [r0, #0x48]
+    str r2, [r0, #72] @ IV location is 72 bytes from the pid position stored in r0
     ldr r5, TrainerOTID @ trainerID
     ldr r6, [r5]
     lsr r6, r6, #0x10
@@ -114,6 +113,9 @@ Finalize:
     add r0, r7 @ add to party ram
     bx r5 @ execute Setboxmondata on the new pokemon
 
+
+
+
     .align
     gRNGValue:
         .long 0x03004818
@@ -140,7 +142,7 @@ Finalize:
     CalculateMonStats:
         .long 0x0803b1b9
     TrainerOTID:
-        .long 0x02024EAF
+        .long 0x02024EAC
     gSpecialVar_Result:
         .long 0x0202e8dc
     Setboxmondata:

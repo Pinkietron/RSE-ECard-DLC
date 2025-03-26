@@ -1,1 +1,2 @@
-arm-none-eabi-as chanseyrng.txt -o test.bin -mcpu=arm7tdmi -mthumb
+./arm-none-eabi-as.exe chanseyrng.txt -o rng.bin -mcpu=arm7tdmi -mthumb
+./arm-none-eabi-as.exe FixAbility.txt -o ability.bin -mcpu=arm7tdmi -mthumb

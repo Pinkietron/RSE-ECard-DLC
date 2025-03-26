@@ -1,11 +1,10 @@
-
 db $FF
 db $BD
 db $FF
 db $B5
-db $05
-db $48
 db $06
+db $48
+db $07
 db $49
 db $C9
 db $07
@@ -15,14 +14,18 @@ db $FF
 db $D5
 db $2F
 db $21
-db $04
+db $05
 db $4A
-db $01
+db $02
 db $4D
 db $28
 db $47
 db $C0
 db $46
+db $DC
+db $E8
+db $02
+db $02
 db $ED
 db $D2
 db $03
