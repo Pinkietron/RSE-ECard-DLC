@@ -940,15 +940,15 @@ BEASTRNG: MACRO
 M2RNGAlgo: MACRO
 	db $FF
 	db $B5
-	db $35
+	db $36
 	db $4A
 	db $11
 	db $68
-	db $37
+	db $38
 	db $48
-	db $34
-	db $4B
 	db $35
+	db $4B
+	db $36
 	db $4C
 	db $59
 	db $43
@@ -966,7 +966,7 @@ M2RNGAlgo: MACRO
 	db $80
 	db $45
 	db $80
-	db $31
+	db $32
 	db $4E
 	db $59
 	db $43
@@ -996,6 +996,10 @@ M2RNGAlgo: MACRO
 	db $07
 	db $32
 	db $43
+	db $FF
+	db $D0
+	db $80
+	db $32
 	db $82
 	db $64
 	db $32
@@ -1215,49 +1219,6 @@ M2RNGAlgo: MACRO
 	db $03
 	db $08
 	db $04
-	db $00
-	db $00
-	db $00
-	ENDM
-
-Ability: MACRO
-	db $FF
-	db $BD
-	db $FF
-	db $B5
-	db $05
-	db $48
-	db $06
-	db $49
-	db $C9
-	db $07
-	db $01
-	db $29
-	db $FF
-	db $D5
-	db $2F
-	db $21
-	db $04
-	db $4A
-	db $01
-	db $4D
-	db $28
-	db $47
-	db $C0
-	db $46
-	db $ED
-	db $D2
-	db $03
-	db $08
-	db $60
-	db $43
-	db $00
-	db $03
-	db $C0
-	db $45
-	db $00
-	db $03
-	db $01
 	db $00
 	db $00
 	db $00

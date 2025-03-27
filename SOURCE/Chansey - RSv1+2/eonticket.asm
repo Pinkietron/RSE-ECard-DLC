@@ -41,7 +41,7 @@ ChanseyScriptStart:
 
 		   M2RNGAlgo
 		   BALL
-		   Ability
+		   ;Ability
 
 
 Start:

@@ -26,9 +26,14 @@ M2RNGAlgo:
     lsl r5, r1, #1
     lsr r5, r5, #0x11
     lsl r5, r5, #0xf
-    orr r2, r5
+    orr r2, r5 @ check for ability before storing
+CheckPID:
     lsl r6, r6, #31 @ calcing ability with pid copy stored in r6 by shifting left 31 bits
     orr r2, r6
+    beq AbilityFix
+AbilityFix:
+    add r2, #0x80
+Cont:
     str r2, [r0, #72] @ IV location is 72 bytes from the pid position stored in r0
     ldr r5, TrainerOTID @ trainerID
     ldr r6, [r5]
