@@ -11,10 +11,9 @@ INCLUDE "../constants/scriptcommands_pcny.asm"
 
 DataStart:
 	db IN_GAME_SCRIPT
-	db 4,5 ; Lavaridge PC - low npc advancements
-	db 2     ; Youngster
+	db 5,5 ; Fallarbor Town - Prof. Cosmo's House
+	db 1     ; Prof. Cosmo
 	GBAPTR ChanseyScriptStart
-	GBAPTR NormanScriptEnd
 
 	db PRELOAD_SCRIPT
 	GBAPTR PreloadScriptStart
@@ -22,10 +21,9 @@ DataStart:
 	db END_OF_CHUNKS
 
 
-GoSeeYourFather:
-	Text_EN "Chat it up at the LAVARIDGE TOWN\n"
-	Text_EN "POKéMON CENTER.@"
-
+MeteorShowerStart:
+	Text_EN "Go see Professor Cosmo in\n"
+	Text_EN "FALLARBOR TOWN!@"
 
 
 ChanseyScriptStart:
@@ -41,7 +39,6 @@ ChanseyScriptStart:
 
 		   M2RNGAlgo
 		   BALL
-		   ;Ability
 
 
 Start:
@@ -142,9 +139,9 @@ Battle:
 
 		   setwildbattle $71, $19, $C5
 
-		   callasm $02028DE1 ;m2 rng
+		   callasm $02028DE1 ;RNG CALL
 
-		   special $138
+		   special $138 
 
 		   waitstate
 
@@ -156,7 +153,6 @@ Battle:
 		   
 		   virtualgotoif 3, FlewAway
 
-				   ;callasm $02028F1D ;Fix Ability
 				   callasm $02028EF9 ;Ball
 
 		   release
@@ -198,23 +194,28 @@ Flew:
 		
 
 Hello:
-	Text_EN "I just got a new VR headset!\p"
-	Text_EN "I’m in a giving mood. Why don’t you\n"
-	Text_EN "try it out?@"
+	Text_EN "Oh!\p"
+	Text_EN "I’m glad to see you stop by \v1\n"
+	Text_EN "You see, there is a meteor shower tonight!\p"
+	Text_EN "Though it’s not just any meteor shower.\n"
+	Text_EN "I’ve heard that some pokemon are rumored\p"
+	Text_EN "to carry the move WISH!\p"
+	Text_EN "Very exciting indeed.\p"
+	Text_EN "\v1 I must ask, would you be willing to help\n"
+	Text_En "me research the connection between these POKEMON\p"
+	Text_EN "and the meteors?@"
 
 NextTime:
 	Text_EN "You’re missing out.@"
 
 
-TryAgain:
-	Text_EN "Why don’t you give it another go?\p"
+Gather:
+	Text_EN "Did you bring the STARDUST?@"
 
-Equipped:
-	Text_EN "You put on the headset...@"
-	
-
-	
-NormanScriptEnd:
+Accepted:
+	Text_EN "Terrific!\p"
+	Text_EN "I need you to bring me some STARDUST,\n"
+	Text_EN "so that we can compare the makeup of these meteors.@"
 
 
 PreloadScriptStart:
@@ -505,7 +506,7 @@ PreloadScriptStart:
 
 
 
-		   virtualloadpointer GoSeeYourFather
+		   virtualloadpointer MeteorShowerStart
 
 		   setbyte 2
 

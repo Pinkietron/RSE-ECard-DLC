@@ -1,4 +1,0 @@
-Start:
-    push {r1-r7, lr}
-Test:
-    add r0, #0x0080

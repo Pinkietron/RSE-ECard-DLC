@@ -940,15 +940,15 @@ BEASTRNG: MACRO
 M2RNGAlgo: MACRO
 	db $FF
 	db $B5
-	db $36
+	db $35
 	db $4A
 	db $11
 	db $68
-	db $38
+	db $37
 	db $48
-	db $35
+	db $34
 	db $4B
-	db $36
+	db $35
 	db $4C
 	db $59
 	db $43
@@ -966,8 +966,8 @@ M2RNGAlgo: MACRO
 	db $80
 	db $45
 	db $80
-	db $32
-	db $4E
+	db $06
+	db $68
 	db $59
 	db $43
 	db $09
@@ -996,10 +996,6 @@ M2RNGAlgo: MACRO
 	db $07
 	db $32
 	db $43
-	db $FF
-	db $D0
-	db $80
-	db $32
 	db $82
 	db $64
 	db $32

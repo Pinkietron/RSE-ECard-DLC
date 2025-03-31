@@ -22,13 +22,14 @@ SpriteData:
 
 Instructions1: ; 1921
 	db "Link e-Reader to Pokémon Game\n"
+	db "as Player 2.\n"
 	db "Press the B Button to cancel.\0"
 
 DeliveryInProcess: ; 1a0d
-	db "VR CHANSEY EVENT delivery in\nProgress...\0"
+	db "METEOR SHOWER EVENT delivery in\nProgress...\0"
 
 TicketDelivered: ; 1a2f
-	db "VR CHANSEY EVENT delivered!\0"
+	db "METEOR SHOWER EVENT delivered!\0"
 
 ; this function is subtly different than the one
 ; on the Battle e cards, for no apparent reason
