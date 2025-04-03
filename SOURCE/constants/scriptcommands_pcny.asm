@@ -346,6 +346,17 @@ setvirtualaddress: MACRO
 waitstate: MACRO
            db $27
            ENDM
+yesnobox: MACRO
+	db $6E
+	db \1
+	db \2
+	ENDM
+countpkmn: MACRO
+	db $43
+	ENDM
+fadedefault: MACRO
+	db $35
+	ENDM
 virtualgotoif: MACRO
 	db $BB
 	db \1
@@ -365,6 +376,18 @@ waitmoncry: MACRO
 setmoneventlegal: MACRO
 	db $CD
 	dw \1
+	ENDM
+setmaptile: MACRO
+	db $A2
+	dw \1
+	dw \2
+	dw \3
+	dw \4
+	ENDM
+setanimation: MACRO
+	db $9D
+	db \1
+	dw \2
 	ENDM
 checkmoneventlegal: MACRO
 	db $CE

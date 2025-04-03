@@ -42,10 +42,8 @@ NormanScriptStart:
 			db $00
 			dw $0000
 
-		   ;EVENTLEGAL2 ; remove
 		   METLOCATION
 		   GAMEORIGIN
-		   ;METLEVEL ; remove
 		   BALL
 
 

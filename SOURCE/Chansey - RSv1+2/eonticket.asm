@@ -14,6 +14,7 @@ DataStart:
 	db 5,5 ; Fallarbor Town - Prof. Cosmo's House
 	db 1     ; Prof. Cosmo
 	GBAPTR ChanseyScriptStart
+	GBAPTR ChanseyScriptEnd
 
 	db PRELOAD_SCRIPT
 	GBAPTR PreloadScriptStart
@@ -28,13 +29,13 @@ MeteorShowerStart:
 
 ChanseyScriptStart:
 	setvirtualaddress ChanseyScriptStart
-	       db $43              ;This checks if your party is bigger than 0
+	       countpkmn              ;This checks if your party is bigger than 0
 
 		   compare LASTRESULT, 0   ;It's so I can store thumb code in static spot. 
 
 		   virtualgotoif 2, Start  ;It should never fail.
 		   
-		   dw $0000
+		   dw $0000 ; Align scripts
 		   db $00
 
 		   M2RNGAlgo
@@ -42,7 +43,7 @@ ChanseyScriptStart:
 
 
 Start:
-		   db $43 ;check party size
+		   countpkmn ;check party size
 
 		   compare LASTRESULT, 5
 
@@ -53,6 +54,10 @@ Start:
 		   checkflag $20 ; check if flew triggered
 
 		   		virtualgotoif 1, Retry
+			
+			comparefarbytetobyte $0202886C, $1
+			
+				virtualgotoif 1, GatheredStardust
 
 		   pause $10
 
@@ -68,13 +73,15 @@ Start:
 		
 		   waitkeypress
 
-		   writebytetoaddr $01, $0202886B
+		   writebytetoaddr $01, $0202886B ; for the battle check
 
-		   db $6E, $17, $8 ; y/n box $1 = y $0 = n 
+		   writebytetoaddr $01, $0202886C ; so we can continue from a later point of dialogue
+
+		   yesnobox $17, $8 ; $1 = y $0 = n 
 		
 		   compare LASTRESULT, 0
 
-		   		virtualgotoif 5, SaidYes
+		   		virtualgotoif 5, SaidYes 
 
 		   virtualmsgbox NextTime
 
@@ -87,42 +94,86 @@ Start:
 		   end
 
 
+GatheredStardust:
+		faceplayer
 
+		virtualmsgbox Gather           
 
-SaidYes:
+		waitmsg
+		
+		waitkeypress
+		
+		checkitem $6C, $01
 
-		virtualmsgbox Equipped
+		compare LASTRESULT, 1
+
+			virtualgotoif 1, DidGatherStardust
+
+		virtualmsgbox NoStardust
 
 		waitmsg
 
 		waitkeypress
 
-		sound $04 ; pc on
+		release
 
-		pause $3C
+		end
 
-	    sound $02 ; pc login
+DidGatherStardust:
+		virtualmsgbox YesStardust 
 
-		pause $3C
+		waitmsg
+
+		waitkeypress
+
+		;doanimation $45 ; white flash
+
+		applymovement 1, $20250A1
+
+		virtualmsgbox Investigate
+
+		waitmsg
+		
+		waitkeypress
 
 		release
 
-		comparefarbytetobyte $0202886B, $1
+		writebytetoaddr $0, $2028dc9
+		writebytetoaddr $D, $2028dca
+		writebytetoaddr $2, $2028dcb ; change map and npc to Fallarbor Old Man
 
-	       virtualgotoif 1, Battle
-	
-	   db $35 ; return normal map song
+		callasm $2025009 ; calc ramscript checksum
+
+		end
+
+
+SaidYes:
+
+		virtualmsgbox Accepted
+
+		waitmsg
+
+		waitkeypress
+
+		release
 		
+		end
 
+		;comparefarbytetobyte $0202886B, $1
+
+	       ;virtualgotoif 1, Battle
+	
+	   ;fadedefault ; return normal map song
+		
 Retry:
 
 	faceplayer
 
-	virtualmsgbox TryAgain
+	;virtualmsgbox TryAgain
 
-	waitmsg
+	;waitmsg
 
-	waitkeypress
+	;waitkeypress
 
 	release
 
@@ -147,7 +198,7 @@ Battle:
 
 		   writebytetoaddr $00, $2028230
 
-		   db $43
+		   countpkmn
 
 		   comparevar LASTRESULT, $800B	; compares between current party size and previous party size	   
 		   
@@ -158,6 +209,7 @@ Battle:
 		   release
 
 		   killscript
+
 
 
 NoRoomTXT:
@@ -176,8 +228,8 @@ NoRoom:
  	   	   end
 
 FlewAway:
-	db $97, $01 ; fade out
-	db $97, $00 ; fade in
+	fadescreen $01 ; fade out
+	fadescreen $00 ; fade in
 
 	setflag $20 ;set a temp flag (https://github.com/pret/pokeruby/blob/master/include/constants/flags.h)
 
@@ -189,34 +241,47 @@ FlewAway:
 
 
 Flew:
-        Text_EN "You took off the headset.@"
+        ;Text_EN "You took off the headset.@"
+		Text_EN "PLACEHOLDER@"
 
-		
+Investigate:
+		;Text_EN "It looks like something fell\n"
+		;Text_EN "out of the sky!\p"
+		;Text_EN "\v1, do you mind taking a look?@"
+		Text_EN "PLACEHOLDER@"
+
+NoStardust:
+		;Text_EN "Please \v1, I need some STARDUST!@"
+		Text_EN "PLACEHOLDER@"
+
+YesStardust:
+		;Text_EN "Thank you, \v1!@"
+		Text_EN "PLACEHOLDER@"
 
 Hello:
-	Text_EN "Oh!\p"
-	Text_EN "I’m glad to see you stop by \v1\n"
-	Text_EN "You see, there is a meteor shower tonight!\p"
-	Text_EN "Though it’s not just any meteor shower.\n"
-	Text_EN "I’ve heard that some pokemon are rumored\p"
-	Text_EN "to carry the move WISH!\p"
-	Text_EN "Very exciting indeed.\p"
-	Text_EN "\v1 I must ask, would you be willing to help\n"
-	Text_En "me research the connection between these POKEMON\p"
-	Text_EN "and the meteors?@"
+    ;Text_EN "I’m glad to see you stop by \v1\n"
+    ;Text_EN "There is a meteor shower tonight!\p"
+    ;Text_EN "\v1, would you be willing to help\n"
+    ;Text_EN "me research these meteors?@"
+	Text_EN "PLACEHOLDER@"
 
 NextTime:
-	Text_EN "You’re missing out.@"
-
+	;Text_EN "Oh.\p"
+	;Text_EN "I do hope you change your mind.@"
+	Text_EN "PLACEHOLDER@"
 
 Gather:
-	Text_EN "Did you bring the STARDUST?@"
+	;Text_EN "Did you bring the STARDUST?@"
+	Text_EN "PLACEHOLDER@"
 
 Accepted:
-	Text_EN "Terrific!\p"
-	Text_EN "I need you to bring me some STARDUST,\n"
-	Text_EN "so that we can compare the makeup of these meteors.@"
+	;Text_EN "Terrific!\p"
+	;Text_EN "I need you to bring me some STARDUST,\n"
+	;Text_EN "so that we can compare these meteors!@"
+	Text_EN "PLACEHOLDER@"
 
+
+ChanseyScriptEnd:
 
 PreloadScriptStart:
 	setvirtualaddress PreloadScriptStart
@@ -352,7 +417,7 @@ PreloadScriptStart:
 	writebytetoaddr $27, $2025005	
 	writebytetoaddr $1E, $2025006	
 	writebytetoaddr $1B, $2025007
-
+test
 	writebytetoaddr $FF, $2025008 ;Calc RamScript Checksum
 	writebytetoaddr $B5, $2025009
 	writebytetoaddr $0C, $202500A
@@ -447,74 +512,20 @@ PreloadScriptStart:
 	writebytetoaddr $15, $202509F
 	writebytetoaddr $FF, $20250A0
 
-	writebytetoaddr $00, $20250A1 ;ADVENTURE CONTINUE
-	writebytetoaddr $02, $20250A2
-	writebytetoaddr $1D, $20250A3
-	writebytetoaddr $11, $20250A4
-	writebytetoaddr $01, $20250A5
-	writebytetoaddr $03, $20250A6
-	writebytetoaddr $3B, $20250A7
-	writebytetoaddr $19, $20250A8
-	writebytetoaddr $31, $20250A9
-	writebytetoaddr $1D, $20250AA
-	writebytetoaddr $00, $20250AB
-	writebytetoaddr $01, $20250AC
-	writebytetoaddr $0B, $20250AD
-	writebytetoaddr $35, $20250AE
-	writebytetoaddr $09, $20250AF
-	writebytetoaddr $1B, $20250B0
-	writebytetoaddr $1E, $20250B1
-	writebytetoaddr $31, $20250B2
-	writebytetoaddr $1D, $20250B3
-	writebytetoaddr $09, $20250B4
-	writebytetoaddr $FE, $20250B5
-	writebytetoaddr $2E, $20250B6
-	writebytetoaddr $06, $20250B7
-	writebytetoaddr $15, $20250B8
-	writebytetoaddr $15, $20250B9
-	writebytetoaddr $00, $20250BA
-	writebytetoaddr $03, $20250BB
-	writebytetoaddr $19, $20250BC
-	writebytetoaddr $1B, $20250BD
-	writebytetoaddr $1E, $20250BE
-	writebytetoaddr $06, $20250BF
-	writebytetoaddr $1B, $20250C0
-	writebytetoaddr $31, $20250C1
-	writebytetoaddr $09, $20250C2
-	writebytetoaddr $FE, $20250C3
-	writebytetoaddr $19, $20250C4
-	writebytetoaddr $1B, $20250C5
-	writebytetoaddr $00, $20250C6
-	writebytetoaddr $1E, $20250C7
-	writebytetoaddr $0D, $20250C8
-	writebytetoaddr $09, $20250C9
-	writebytetoaddr $00, $20250CA
-	writebytetoaddr $1B, $20250CB
-	writebytetoaddr $09, $20250CC
-	writebytetoaddr $33, $20250CD
-	writebytetoaddr $1E, $20250CE
-	writebytetoaddr $FE, $20250CF
-	writebytetoaddr $09, $20250D0
-	writebytetoaddr $00, $20250D1
-	writebytetoaddr $03, $20250D2
-	writebytetoaddr $01, $20250D3
-	writebytetoaddr $1D, $20250D4
-	writebytetoaddr $0B, $20250D5
-	writebytetoaddr $FF, $20250D6
+	; movement cmds (https://www.pokecommunity.com/threads/emerald-movement-commands.339844/)
+	writebytetoaddr $01, $20250A1
+	writebytetoaddr $56, $20250A2
+	writebytetoaddr $FF, $20250A3
+
 
 	clearflag $20
 
+	virtualloadpointer MeteorShowerStart
+
+	setbyte 2
 
 
-		   virtualloadpointer MeteorShowerStart
-
-		   setbyte 2
-
-
-		   end
-
-
-
+	end
 
 DataEnd:
 	EOF
